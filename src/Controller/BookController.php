@@ -16,11 +16,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BookController extends AbstractController
 {
-    #[Route('/all/book', name: 'list_book')]
-    public function listBooks(BookRepository $repository): Response
+    #[Route('/all/book/{name}', name: 'list_book')]
+    public function listBooks($name,BookRepository $repository): Response
     {
         //$books = $repository->findPublishedBook();
-        $books = $repository->findAll();
+        $books = $repository->findPublishedBookByName($name);
         return $this->render('book/list.html.twig', ['books' => $books]);
     }
 
