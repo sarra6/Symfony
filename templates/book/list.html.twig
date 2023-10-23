@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Liste des books</h1>
+{% if books is empty %}
+    <h5> table vide</h5>
+{% else %}
+<table class="table" border="1">
+    <thead>
+    <tr>
+        <th>title</th>
+        <th>category</th>
+        <th>pubdate</th>
+        <th>published</th>
+        <th>name of author</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% set nbpub = 0%}
+    {% set unnbpub = 0 %}
+    {% for book in books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.category }}</td>
+            <td>{{ book.pubdate |date('Y-m-d H:i:s')}}</td>
+            <td>{{ book.published }}</td>
+            {%if book.published %}
+                {% set nbpub = nbpub + 1 %}
+            {% else %}
+                {% set unnbpub = unnbpub + 1 %}
+             {% endif%}
+            <td>{{ book.author }}</td>
+            <td>
+                <a href="{{ path('update_book', {'ref': book.ref}) }}">edit</a>
+                <a href="{{ path('delete_book', {'ref':  book.ref}) }}">delete</a>
+                <a href="{{ path('details_book', {'ref':  book.ref}) }}">Show</a>
+
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+Number of published books :{{  nbpub}} <br>
+Number of unpublished books : {{ unnbpub}}
+{% endif %}
+</body>
+</html>

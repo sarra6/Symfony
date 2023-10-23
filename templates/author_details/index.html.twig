@@ -1,0 +1,9 @@
+{% if author is not empty %}
+<h1>Author Details</h1>
+<p><strong>ID:</strong> {{ author.id }}</p>
+<p><strong>Name:</strong> {{ author.username }}</p>
+<p><strong>Email:</strong> {{ author.email }}</p>
+
+{% else %}
+<h1>data not found</h1>
+{% endif %}

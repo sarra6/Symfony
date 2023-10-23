@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Ajouter un Book</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.ref) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.category)}}
+    {{ form_row(form.pubdate) }}
+    {{ form_row(form.published) }}
+    {{ form_row(form.author) }}
+
+    {{ form_end(form) }}
+</body>
+</html>
