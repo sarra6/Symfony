@@ -36,6 +36,52 @@ class BookRepository extends ServiceEntityRepository
             ->getResult();
 
     }
+    public function findBookByDate()
+    {
+        return $this->createQueryBuilder('b')
+            ->where('b.pubdate > :pubdate')
+            ->setParameters([
+                'pubdate' => '2023-01-01'
+            ])
+            ->orderBy('b.title', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+    public function findBookbyref($ref)
+    {
+        return $this->createQueryBuilder('b')
+            ->where('b.ref = :ref')
+            ->setParameter('ref', $ref)
+            ->getQuery()
+            ->getResult();
+
+    }
+
+    public function booksListByAuthors($name)
+    {
+        return $this->createQueryBuilder('b')
+            ->innerJoin('b.author', 'a')
+            ->where('a.username = :username')
+            ->setParameters([
+                'username' => $name ,
+            ])
+            ->orderBy('b.title', 'ASC')
+            ->getQuery()
+            ->getResult();
+
+    }
+
+    public function modifyBooksCategory()
+    {
+        return $this->createQueryBuilder('b')
+            ->where('b.category = :category')
+            ->setParameters([
+                'category' => 'Romance',
+            ])
+            ->orderBy('b.title', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 
 //    /**
 //     * @return Book[] Returns an array of Book objects
